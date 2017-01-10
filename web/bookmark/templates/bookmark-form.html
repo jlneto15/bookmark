@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	
+	<div class="page-header">
+		<h1>Bookmark <small>Formulário 
+		{% if id != 0 %}
+			de Alteração
+		{% else %}
+			de Cadastro
+		{% endif %}
+		</small></h1>
+	</div>	
+	
+	<form method="POST" action="{{action}}">
+		<div class="panel-body">
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">Titulo</span>
+				<input type="text" class="form-control" placeholder="Título" name="title" aria-describedby="basic-addon1" value="{{title}}">
+			</div>
+
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon2">http://</span>
+				<input type="text" class="form-control" placeholder="URL" name="url" aria-describedby="basic-addon2" value="{{url}}">
+				<span class="input-group-addon" id="basic-addon2">Url</span>
+			</div>
+		</div>
+		<div class="panel-footer">
+			<div class="btn-group btn-group-justified" role="group" aria-label="...">
+				<div class="btn-group" role="group">
+					<a href="/bookmark">Voltar</a>
+				</div>
+				<div class="btn-group" role="group">
+					<button type="submit" class="btn btn-primary">Salvar</button>
+				</div>
+			</div>
+
+		</div>
+	</form>
+
+{% endblock content %}

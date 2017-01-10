@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	
+	<div class="page-header">
+		<h1>Bookmark <small>Listagem</small></h1>
+	</div>	
+
+	<div>{{ data.code }}</div>
+	<div class="list-group">
+		<div style="height: 40px;">
+			<div style="width: 10%;float:left;text-align: center"><strong>#</strong></div>
+			<div style="width: 30%;float:left;text-align: center;"><strong>Título</strong></div>
+			<div style="width: 30%;float:left;text-align: center;"><strong>URL</strong></div>
+			<div style="width: 30%;float:left;text-align: center;"><strong>Atualizado Em</strong></div>
+		</div>	
+		{% for d in data %}
+		<!-- <a href="#" class="list-group-item"> -->
+			<div class="list-group-item" style="height: 40px;">
+				<div style="width: 10%;float:left;" class="btn-group">
+					<button type="button" class="btn btn-default" style="padding: 5px" aria-label="Left Align" onclick="window.location='/bookmark/form/{{d.id}}'">
+						<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					</button>
+
+					<button type="button" class="btn btn-default" style="padding: 5px" aria-label="Left Align" onclick="deleteBookmark({{d.id}}, '{{d.title}}')">
+						<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+					</button>
+				</div>
+				<div style="width: 30%;float:left">{{d.title}}</div>
+				<div style="width: 30%;float:left">{{d.url}}</div>
+				<div style="width: 30%;float:left">{{d.updated_at}}</div>
+			</div>
+		<!-- </a> -->
+		{% endfor %}
+	</div>
+	
+	<br />
+
+	<script type="text/javascript">
+	function deleteBookmark(id, text) {
+		if (confirm('Deseja excluir o bookmark ['+text+']?')) {
+			window.location='/bookmark/delete/'+id;
+		} else {
+			return false;
+		}
+	}
+	</script>
+
+{% endblock content %}

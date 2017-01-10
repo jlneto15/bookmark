@@ -1,0 +1,33 @@
+<html>
+    <head>
+		{% load staticfiles %}
+		{% load bootstrap3 %}
+
+		{% bootstrap_css %}
+		{% bootstrap_javascript %}
+
+        <title>.: Bookmark :.</title>
+		<!--        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+				<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+				<link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+				<link rel="stylesheet" href="{% static 'css/blog.css' %}">-->
+		<style>
+		object[type='application/gas-events-cef'] {
+			display: none;
+		}
+		#content {
+			height: 100%;
+			width: 100%;
+			background-color: #DDD;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="content" >
+			{% include 'toolbar.html' %}
+			<div class="panel panel-default" style="width: 90%; max-height: 80%; margin:auto;margin-top: 20px;overflow: auto">
+			{% block content %}{% endblock %}
+			</div>
+		</div>
+	</body>
+</html>

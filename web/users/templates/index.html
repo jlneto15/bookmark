@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<div class="page-header">
+		<h1>Usuários <small>Listagem</small></h1>
+	</div>	
+
+	<ul class="list-group">
+		{% for d in data|dictsort:"name" %}
+		<a href="javascript:$('#showBookmark_{{d.id}}').toggle()" class="list-group-item">
+			<span class="badge">{{d.bookmark|length}}</span>
+			{{d.name}} - <i>[{{d.email}}]</i>
+		</a>
+		<div style="margin: 0px 50px;display: none" id="showBookmark_{{d.id}}">
+			<ul class="list-group" style="margin-bottom: 0px">
+				{% for l in d.bookmark %}
+				<li class="list-group-item">
+					{{l.title}} <i>[{{l.url}}]</i>
+					(Atualizado em: {{l.updated_at|slice:"0:16"}})
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+		{% endfor %}
+	</ul>
+
+{% endblock content %}
