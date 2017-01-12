@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\Util;
 use App\Models\User;
 use App\Models\Bookmark;
@@ -20,13 +21,12 @@ class UserController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		//$return = User::with('bookmark')->get();
 		$return = User::all();
 		foreach ($return as $user) {
 			$user->bookmark = Bookmark::withoutGlobalScopes()->where('user_id', $user->id)->get();
 		}
 
-		return Util::setReturn(200, $return);
+		return Util::setReturn(Response::HTTP_OK, $return);
 	}
 
 	/**
@@ -44,7 +44,7 @@ class UserController extends Controller {
 			"token" => JWTAuth::fromUser($user)
 		];
 
-		return Util::setReturn(200, $return);
+		return Util::setReturn(Response::HTTP_CREATED, $return);
 	}
 
 	/**
@@ -55,7 +55,7 @@ class UserController extends Controller {
 	 */
 	public function show($id) {
 		$return = User::find($id);
-		return Util::setReturn(200, $return);
+		return Util::setReturn(Response::HTTP_OK, $return);
 	}
 
 	/**
@@ -74,17 +74,6 @@ class UserController extends Controller {
 			"user" => $user
 		];
 		
-		return Util::setReturn(200, $return);
+		return Util::setReturn(Response::HTTP_OK, $return);
 	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function destroy($id) {
-		//
-	}
-
 }

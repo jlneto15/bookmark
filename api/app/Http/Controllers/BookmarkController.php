@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\Util;
 use App\Models\Bookmark;
 use JWTAuth;
@@ -23,7 +24,7 @@ class BookmarkController extends Controller {
 //		dd($user);
 		
 		$return = Bookmark::all();
-		return Util::setReturn(200, $return);
+		return Util::setReturn(Response::HTTP_OK, $return);
 	}
 
 	/**
@@ -44,7 +45,7 @@ class BookmarkController extends Controller {
 			"bookmark" => $bookmark
 		];
 
-		return Util::setReturn(200, $return);
+		return Util::setReturn(Response::HTTP_CREATED, $return);
 	}
 
 	/**
@@ -55,7 +56,7 @@ class BookmarkController extends Controller {
 	 */
 	public function show($id) {
 		$return = Bookmark::findOrFail($id);
-		return Util::setReturn(200, $return);
+		return Util::setReturn(Response::HTTP_OK, $return);
 	}
 
 	/**
@@ -74,7 +75,7 @@ class BookmarkController extends Controller {
 			"bookmark" => $bookmark
 		];
 
-		return Util::setReturn(200, $return);
+		return Util::setReturn(Response::HTTP_OK, $return);
 	}
 
 	/**
@@ -89,7 +90,7 @@ class BookmarkController extends Controller {
 			"deleted" => $bookmark->delete()
 		];
 		
-		return Util::setReturn(200, $return);
+		return Util::setReturn(Response::HTTP_NO_CONTENT, $return);
 	}
 
 }

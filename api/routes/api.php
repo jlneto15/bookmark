@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 Route::post('/auth/login', 'AuthController@login');
 
 Route::resource('/user', 'UserController', [
-	'only' => ['index', 'show', 'store', 'update', 'destroy']
+	'only' => ['index', 'show', 'store', 'update']
 ]);
 
 Route::resource('/bookmark', 'BookmarkController', [

@@ -9,7 +9,6 @@ def index(request):
 
 	response = getApi(request, '/bookmark/', [], 'GET')
 
-	print response
 	if response == False:
 		return HttpResponseRedirect('/login')
 
@@ -23,7 +22,6 @@ def index(request):
 
 def new(request):
 	if request.method == "POST":
-		print request.POST
 		response = getApi(request, '/bookmark/', request.POST, 'POST')
 		messages.add_message(request, messages.SUCCESS, 'Bookmark salvo com sucesso!!!.')
 		return HttpResponseRedirect('/bookmark')
@@ -40,7 +38,6 @@ def new(request):
 
 def edit(request, id):
 	if request.method == "POST":
-		print request.POST
 		response = getApi(request, '/bookmark/'+id, request.POST, 'PUT')
 		if response != False :
 			messages.add_message(request, messages.SUCCESS, 'Bookmark salvo com sucesso!!!.')

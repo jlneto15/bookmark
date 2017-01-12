@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Response;
 
-class Util extends Model {
+class Util {
 
 	/**
 	 * @author José Luiz Neto
